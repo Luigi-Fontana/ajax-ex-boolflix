@@ -1,1 +1,1 @@
-# ajax-ex-boolflix
+# 26° Esercizio Corso Boolean
