@@ -10,19 +10,27 @@
         <link rel="stylesheet" href="css/style.css">
     </head>
     <body>
-        <div class="search-bar">
-            <input id="search" placeholder="Inserisci il Titolo">
-            <button id="btn-search">Ricerca</button>
-        </div>
-        <div class="container-card">
-
-        </div>
+        <section id="header-fullwidth">
+            <header>
+                <input id="search" placeholder="Inserisci il Titolo">
+                <button id="btn-search">Ricerca</button>
+            </header>
+        </section>
+        <section id="main-fullwidth">
+            <main>
+                <div class="container"></div>
+            </main>
+        </section>
 
         <script id="card-template" type="text/x-handlebars-template">
             <div class="card">
+                <h3>Titolo</h3>
                 <p>{{titolo}}</p>
+                <h3>Titolo Originale</h3>
                 <p>{{titoloOriginale}}</p>
+                <h3>Lingua Originale</h3>
                 <p>{{lingua}}</p>
+                <h3>Voto</h3>
                 <p>{{voto}}</p>
             </div>
         </script>

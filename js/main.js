@@ -17,6 +17,7 @@ $(document).ready(function () {
             },
             method: 'GET',
             success: function (data) {
+                $('.card').hide();
                 var films = data.results;
                 for (var i = 0; i < films.length; i++) {
                     var film = films[i];
@@ -28,7 +29,7 @@ $(document).ready(function () {
                         voto: film.vote_average
                     };
                         var cardFilm = template(filmTemplate);
-                        $('.container-card').append(cardFilm);
+                        $('.container').append(cardFilm);
                 };
             },
             error: function () {
