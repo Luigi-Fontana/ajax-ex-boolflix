@@ -10,6 +10,23 @@
         <link rel="stylesheet" href="css/style.css">
     </head>
     <body>
+        <div class="search-bar">
+            <input id="search" placeholder="Inserisci il Titolo">
+            <button id="btn-search">Ricerca</button>
+        </div>
+        <div class="container-card">
+
+        </div>
+
+        <script id="card-template" type="text/x-handlebars-template">
+            <div class="card">
+                <p>{{titolo}}</p>
+                <p>{{titoloOriginale}}</p>
+                <p>{{lingua}}</p>
+                <p>{{voto}}</p>
+            </div>
+        </script>
+
 
 
         <script src="js/main.js" charset="utf-8"></script>
