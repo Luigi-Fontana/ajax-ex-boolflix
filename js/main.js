@@ -1,41 +1,59 @@
 $(document).ready(function () {
-    var baseUrl = 'https://api.themoviedb.org/3';
 
-    var source = $('#card-template').html();
-    var template = Handlebars.compile(source);
+    var cardSource = $('#card-template').html(); // Clono il template di Handlebars e glielo dò in pasto
+    var cardTemplate = Handlebars.compile(cardSource);
 
     $('#btn-search').click(function () {
+        search();
+    });
+    $('#search').keypress(function (event) {
+        if (event.keyCode == 13) {
+            search();
+        };
+    });
+
+    function search() { // Funzione ricerca con autoeliminazione input e controllo sull'inserimento di almeno un carattere per la ricerca
         var input = $('#search').val();
-        console.log(input);
         $('#search').val('');
+        if (input.length > 0) {
+            apiCall(input);
+        } else {
+            alert('Campo di ricerca vuoto');
+        };
+    };
+
+    function apiCall(query) { // Funzione di chiamata API con query in entrata
+        var baseUrl = 'https://api.themoviedb.org/3';
         $.ajax({
             url: baseUrl + '/search/movie',
             data: {
                 api_key: '826bc99f9afd0a331c43a3695d0d0263',
-                query: input,
+                query: query,
                 language: 'it-IT'
             },
             method: 'GET',
             success: function (data) {
-                $('.card').hide();
-                var films = data.results;
-                for (var i = 0; i < films.length; i++) {
-                    var film = films[i];
-                    console.log(film);
-                    var filmTemplate = {
-                        titolo: film.title,
-                        titoloOriginale: film.original_title,
-                        lingua: film.original_language,
-                        voto: film.vote_average
-                    };
-                        var cardFilm = template(filmTemplate);
-                        $('.container').append(cardFilm);
-                };
+                var cards = data.results;
+                printCard(cards);
             },
             error: function () {
-                alert('C\'è qualquadra che non cosa');
+                alert('Database Error');
             }
         });
-    });
+    };
 
+    function printCard(array) { // Funzione di stampa della Card con Handlebars con array di oggetti in entrata
+        $('.card').remove(); // Innanzittuo rimuovo tutte le card prima di crearne di nuove
+        for (var i = 0; i < array.length; i++) {
+            var card = array[i];
+            var cardInfos = {
+                titolo: card.title,
+                titoloOriginale: card.original_title,
+                lingua: card.original_language,
+                voto: card.vote_average
+            };
+            var cardHtml = cardTemplate(cardInfos);
+            $('.container').append(cardHtml);
+        };
+    };
 });
