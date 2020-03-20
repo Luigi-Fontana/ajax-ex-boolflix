@@ -54,6 +54,7 @@ $(document).ready(function () {
             };
             var cardHtml = cardTemplate(cardInfos);
             $('.container').append(cardHtml);
+            deleteTitle(cardInfos.titolo, cardInfos.titoloOriginale);
             stars(cardInfos.voto);
         };
     };
@@ -65,5 +66,11 @@ $(document).ready(function () {
     function stars(vote) { // Funzione che calcola la percentuale di larghezza che deve avere il div delle stelle piene
         var percentage = (vote * 100) / 5;
         $(".card:last-child").find(".fill-stars").css( "width", percentage + "%");
+    };
+
+    function deleteTitle(title, original) { // Funzione che elimina il titolo originale se è uguale al titolo
+        if (title == original) {
+            $(".card:last-child").find(".title").remove();
+        }
     };
 });

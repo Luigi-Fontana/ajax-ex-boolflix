@@ -76,6 +76,11 @@ main {
     font-size: 14px;
 }
 
+.card img {
+    width: 25px;
+    margin-top: 10px;
+}
+
 .card .empty-stars {
     display: inline-block;
     position: relative;
