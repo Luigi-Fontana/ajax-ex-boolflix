@@ -50,10 +50,20 @@ $(document).ready(function () {
                 titolo: card.title,
                 titoloOriginale: card.original_title,
                 lingua: card.original_language,
-                voto: card.vote_average
+                voto: transformVote(card.vote_average)
             };
             var cardHtml = cardTemplate(cardInfos);
             $('.container').append(cardHtml);
+            stars(cardInfos.voto);
         };
+    };
+
+    function transformVote(vote) { // Funzione che converte il voto in decimi in quinti
+        return Math.ceil(vote / 2);
+    };
+
+    function stars(vote) { // Funzione che calcola la percentuale di larghezza che deve avere il div delle stelle piene
+        var percentage = (vote * 100) / 5;
+        $(".card:last-child").find(".fill-stars").css( "width", percentage + "%");
     };
 });
