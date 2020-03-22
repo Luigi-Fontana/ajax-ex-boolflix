@@ -16,6 +16,7 @@ $(document).ready(function () {
         var input = $('#search').val();
         $('#search').val('');
         if (input.length > 0) {
+            $('.card').remove(); // Innanzittuo rimuovo tutte le card prima di crearne di nuove
             apiCall(input);
         } else {
             alert('Campo di ricerca vuoto');
@@ -34,7 +35,23 @@ $(document).ready(function () {
             method: 'GET',
             success: function (data) {
                 var cards = data.results;
-                printCard(cards);
+                printMovie(cards);
+            },
+            error: function () {
+                alert('Database Error');
+            }
+        });
+        $.ajax({
+            url: baseUrl + '/search/tv',
+            data: {
+                api_key: '826bc99f9afd0a331c43a3695d0d0263',
+                query: query,
+                language: 'it-IT'
+            },
+            method: 'GET',
+            success: function (data) {
+                var cards = data.results;
+                printTv(cards);
             },
             error: function () {
                 alert('Database Error');
@@ -42,13 +59,32 @@ $(document).ready(function () {
         });
     };
 
-    function printCard(array) { // Funzione di stampa della Card con Handlebars con array di oggetti in entrata
-        $('.card').remove(); // Innanzittuo rimuovo tutte le card prima di crearne di nuove
+    function printMovie(array) { // Funzione di stampa della Card con Handlebars con array di oggetti in entrata
+        var baseImgUrl = 'https://image.tmdb.org/t/p/';
         for (var i = 0; i < array.length; i++) {
             var card = array[i];
             var cardInfos = {
+                cover: baseImgUrl + '/w185/' + card.poster_path,
                 titolo: card.title,
                 titoloOriginale: card.original_title,
+                lingua: card.original_language,
+                voto: transformVote(card.vote_average)
+            };
+            var cardHtml = cardTemplate(cardInfos);
+            $('.container').append(cardHtml);
+            deleteTitle(cardInfos.titolo, cardInfos.titoloOriginale);
+            stars(cardInfos.voto);
+        };
+    };
+
+    function printTv(array) { // Funzione di stampa della Card con Handlebars con array di oggetti in entrata
+        var baseImgUrl = 'https://image.tmdb.org/t/p/';
+        for (var i = 0; i < array.length; i++) {
+            var card = array[i];
+            var cardInfos = {
+                cover: baseImgUrl + '/w185/' + card.poster_path,
+                titolo: card.name,
+                titoloOriginale: card.original_name,
                 lingua: card.original_language,
                 voto: transformVote(card.vote_average)
             };
