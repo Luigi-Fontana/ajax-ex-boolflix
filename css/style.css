@@ -57,7 +57,7 @@ main {
 }
 
 .card {
-    flex-basis: 205px;
+    flex-basis: 200px;
     padding: 10px;
     background-color: #2e3a46;
     border-radius: 10px;
@@ -81,27 +81,7 @@ main {
     margin-top: 10px;
 }
 
-.card .empty-stars {
-    display: inline-block;
-    position: relative;
-    overflow: hidden;
-    margin-top: 10px;
-}
-
-.card .empty-stars:after {
-    font-family: "fontawesome";
-    content: "\2605 \2605 \2605 \2605 \2605";
-    color: grey;
-}
-
-.card .fill-stars {
-    position: absolute;
-    top: 0;
-    left: 0;
-}
-
-.card .fill-stars:after {
-    font-family: "fontawesome";
-    content: "\2605 \2605 \2605 \2605 \2605";
-    color: #DAA520;
+.card .cover {
+    width: 180px;
+    height: 270px;
 }

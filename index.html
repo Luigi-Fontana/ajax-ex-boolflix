@@ -24,7 +24,7 @@
 
         <script id="card-template" type="text/x-handlebars-template">
             <div class="card">
-                <img src="{{cover}}" alt="cover">
+                <img class="cover" src="{{cover}}" alt="cover">
                 <h3>Titolo</h3>
                 <p>{{titolo}}</p>
                 <div class="title">
@@ -32,12 +32,10 @@
                     <p>{{titoloOriginale}}</p>
                 </div>
                 <h3>Lingua Originale</h3>
-                <img class="flag" src="img/flags/{{lingua}}.png" alt="{{lingua}}">
+                <p>{{{lingua}}}</p>
                 <h3>Voto</h3>
                 <p>{{voto}} / 5</p>
-                <div class="empty-stars">
-                    <div class="fill-stars"></div>
-                </div>
+                <p>{{{stars}}}</p>
             </div>
         </script>
 
