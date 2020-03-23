@@ -3,17 +3,27 @@ $(document).ready(function () {
     var apiBaseUrl = 'https://api.themoviedb.org/3';
     var coverBaseUrl = 'https://image.tmdb.org/t/p/';
     var coverBaseSize = 'w342';
-
-    var cardSource = $('#card-template').html(); // Clono il template di Handlebars e glielo dò in pasto
+    // Clono il template di Handlebars e glielo dò in pasto
+    var cardSource = $('#card-template').html();
     var cardTemplate = Handlebars.compile(cardSource);
 
-    $('#btn-search').click(function () {
+    $('#icon-search').click(function () {
         search();
     });
     $('#search').keypress(function (event) {
         if (event.keyCode == 13) {
             search();
         };
+    });
+
+    $('.container').on('mouseenter', '.card', function () {
+        $(this).children('.front').hide();
+        $(this).children('.back').fadeIn(100);
+    });
+
+    $('.container').on('mouseleave', '.card', function () {
+        $(this).children('.front').fadeIn(100);
+        $(this).children('.back').hide();
     });
 
     function search() { // Funzione di ricerca con autoeliminazione input e controllo sull'inserimento di almeno un carattere per la ricerca
@@ -127,7 +137,7 @@ $(document).ready(function () {
         if (link !== null) {
             return coverBaseUrl + coverBaseSize + link;
         } else {
-            return 'img/nocover.jpeg';
+            return 'img/nocover.png';
         }
     }
 });

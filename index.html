@@ -6,14 +6,34 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.3/handlebars.min.js" charset="utf-8"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <title>BoolFlix</title>
+        <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
         <link rel="shortcut icon" type="image/x-icon" href="https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fwww.pngall.com%2Fwp-content%2Fuploads%2F2%2FB-Letter-Transparent-180x180.png&f=1&nofb=1">
         <link rel="stylesheet" href="css/style.css">
     </head>
     <body>
         <section id="header-fullwidth">
             <header>
-                <input id="search" placeholder="Inserisci il Titolo" value="Ritorno al futuro">
-                <button id="btn-search">Ricerca</button>
+                <div class="header-left">
+                    <img src="img/logo-gold.png" alt="logo">
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Serie TV</a></li>
+                        <li><a href="#">Film</a></li>
+                        <li><a href="#">Nuovi Arrivi</a></li>
+                        <li><a href="#">La mia Lista</a></li>
+                    </ul>
+                </div>
+                <div class="header-right">
+                    <div class="header-right-search">
+                        <i id="icon-search" class="fas fa-search"></i>
+                        <input id="search" placeholder="Inserisci il Titolo">
+                    </div>
+                    <div class="header-right-profile">
+                        <a href="#">Bambini</a>
+                        <i class="fas fa-gift"></i>
+                        <i class="fas fa-bell"></i>
+                    </div>
+                </div>
             </header>
         </section>
         <section id="main-fullwidth">
@@ -24,18 +44,22 @@
 
         <script id="card-template" type="text/x-handlebars-template">
             <div class="card">
-                <img class="cover" src="{{cover}}" alt="cover">
-                <h3>Titolo</h3>
-                <p>{{titolo}}</p>
-                <div class="title">
-                    <h3>Titolo Originale</h3>
-                    <p>{{titoloOriginale}}</p>
+                <div class="front active">
+                    <img class="cover" src="{{cover}}" alt="cover">
                 </div>
-                <h3>Lingua Originale</h3>
-                <p>{{{lingua}}}</p>
-                <h3>Voto</h3>
-                <p>{{voto}} / 5</p>
-                <p>{{{stars}}}</p>
+                <div class="back">
+                    <h3>Titolo</h3>
+                    <p>{{titolo}}</p>
+                    <div class="title">
+                        <h3>Titolo Originale</h3>
+                        <p>{{titoloOriginale}}</p>
+                    </div>
+                    <h3>Lingua Originale</h3>
+                    <p>{{{lingua}}}</p>
+                    <h3>Voto</h3>
+                    <p>{{voto}} / 5</p>
+                    <p>{{{stars}}}</p>
+                </div>
             </div>
         </script>
 
