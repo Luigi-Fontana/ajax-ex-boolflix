@@ -26,27 +26,25 @@ header {
     max-width: 1200px;
     height: 100%;
     margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
 }
 /* HEADER LEFT */
 .header-left {
-    height: 100%;
-    line-height: 70px;
-    float: left;
+    display: flex;
+    align-items: center;
 }
 
 .header-left img {
     height: 20px;
-    margin: 25px 30px 0;
-    float: left;
+    margin: 5px 20px 0;
 }
 
 .header-left ul li {
-    display: inline-block;
-    float: left;
+    display: inline;
 }
 
-.header-left ul li a,
-.header-right a{
+.header-left ul li a {
     font-size: 14px;
     color: #b5b5b5;
     padding: 0 10px;
@@ -58,32 +56,39 @@ header {
 }
 /* HEADER RIGHT */
 .header-right {
-    height: 100%;
-    line-height: 70px;
-    float: right;
+    display: flex;
+    align-items: center;
 }
 
 .header-right-search {
     position: relative;
-    float: left;
 }
 
 .header-right-search i {
     position: absolute;
-    right: 10px;
-    top: 27px;
+    right: 20px;
+    top: 3px;
     cursor: pointer;
 }
 
 .header-right-search input {
-    padding: 3px 20px;
+    padding: 3px 40px 3px 20px;
+    margin-right: 10px;
     font-size: 14px;
     border: none;
     border-radius: 20px;
 }
+
 .header-right-profile {
     display: flex;
     align-items: center;
+    transition-duration: 0.2s;
+}
+
+.header-right a {
+    font-size: 14px;
+    color: #b5b5b5;
+    padding: 0 20px;
 }
 
 .header-right-profile i {
@@ -91,6 +96,16 @@ header {
     margin: 0 10px;
     color: #fff;
     cursor: pointer;
+}
+
+.header-right-profile i:hover {
+    color: #daa520;
+}
+
+.header-right-profile img {
+    width: 40px;
+    cursor: pointer;
+    margin: 0 20px;
 }
 /* MAIN */
 #main-fullwidth {
@@ -111,11 +126,12 @@ main {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    padding: 100px 0;
+    padding: 100px 20px;
 }
 
 .card {
     flex-basis: 240px;
+    height: 365px;
     padding: 10px;
     background-color: #141414;
     transition-duration: 0.3s;
@@ -123,12 +139,12 @@ main {
     text-align: center;
     display: flex;
     justify-content: center;
-    align-items: center;
 }
 
 .card:hover {
     transform: scale(1.1);
     border-radius: 40px;
+    cursor: pointer;
 }
 
 .card h3 {
@@ -161,6 +177,69 @@ main {
     border-radius: 10px;
 }
 
-.card .back {
+.card .back,
+.card .back-click {
     display: none;
+}
+
+.card .back-click h3 {
+    font-size: 12px;
+}
+
+.card .back-click p{
+    font-size: 12px;
+    text-align: left;
+    padding: 0 20px;
+    overflow-y: auto;
+}
+
+@media screen and (max-width: 1050px) {
+    .header-right-profile a,
+    .header-right-profile i {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .header-right-profile img {
+        margin-left: 0;
+    }
+    .header-left ul li a {
+        padding: 0 5px;
+    }
+}
+
+@media screen and (max-width: 820px) {
+    .header-left {
+        width: 50%;
+        justify-content: center;
+    }
+    .header-left ul li{
+        display: none;
+    }
+    .header-right-profile img {
+        margin-left: 20px;
+    }
+}
+
+@media screen and (max-width: 560px) {
+    .header-right-profile img {
+        display: none;
+    }
+    .header-right-search {
+        margin-right: 30px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    header {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    .header-left img {
+        margin: 0;
+    }
+    .header-right-search {
+        margin-right: 0;
+    }
 }

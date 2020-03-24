@@ -14,7 +14,7 @@
         <section id="header-fullwidth">
             <header>
                 <div class="header-left">
-                    <img src="img/logo-gold.png" alt="logo">
+                    <a href="#"><img src="img/logo-gold.png" alt="logo"></a>
                     <ul>
                         <li><a href="#">Home</a></li>
                         <li><a href="#">Serie TV</a></li>
@@ -26,12 +26,13 @@
                 <div class="header-right">
                     <div class="header-right-search">
                         <i id="icon-search" class="fas fa-search"></i>
-                        <input id="search" placeholder="Inserisci il Titolo">
+                        <input id="search" placeholder="Cerca Film o Serie TV">
                     </div>
                     <div class="header-right-profile">
                         <a href="#">Bambini</a>
                         <i class="fas fa-gift"></i>
                         <i class="fas fa-bell"></i>
+                        <img class="avatar" src="img/avatar1.png" alt="avatar">
                     </div>
                 </div>
             </header>
@@ -59,6 +60,10 @@
                     <h3>Voto</h3>
                     <p>{{voto}} / 5</p>
                     <p>{{{stars}}}</p>
+                </div>
+                <div class="back-click">
+                    <h3>Trama</h3>
+                    <p>{{{trama}}}</p>
                 </div>
             </div>
         </script>

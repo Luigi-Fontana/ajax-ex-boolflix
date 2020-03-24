@@ -24,6 +24,17 @@ $(document).ready(function () {
     $('.container').on('mouseleave', '.card', function () {
         $(this).children('.front').fadeIn(100);
         $(this).children('.back').hide();
+        $(this).children('.back-click').hide();
+    });
+
+    $('.container').on('click', '.card .back', function () {
+        $(this).hide();
+        $(this).siblings('.back-click').fadeIn(100);
+    });
+
+    $('.container').on('click', '.card .back-click', function () {
+        $(this).siblings('.back').fadeIn(100);
+        $(this).hide();
     });
 
     function search() { // Funzione di ricerca con autoeliminazione input e controllo sull'inserimento di almeno un carattere per la ricerca
@@ -74,7 +85,8 @@ $(document).ready(function () {
                 titoloOriginale: titoloOriginale,
                 lingua: createFlag(card.original_language),
                 voto: transformVote(card.vote_average),
-                stars: createStars(transformVote(card.vote_average))
+                stars: createStars(transformVote(card.vote_average)),
+                trama: createDefaultOverview(card.overview)
             };
             var cardHtml = cardTemplate(cardInfos);
             $('.container').append(cardHtml);
@@ -138,6 +150,14 @@ $(document).ready(function () {
             return coverBaseUrl + coverBaseSize + link;
         } else {
             return 'img/nocover.png';
+        }
+    }
+
+    function createDefaultOverview(text) { // Funzione di correzione testo vuoto in caso di trama assente
+        if (text == '') {
+            return 'Trama non disponibile';
+        } else {
+            return text;
         }
     }
 });
