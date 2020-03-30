@@ -159,7 +159,7 @@ $(document).ready(function () {
             for (var i = 0; i < 5; i++) {
                 var member = array[i];
                 var memberName = member.name;
-                $('.back-click-cast').append('<p> - ' + memberName + '</p>');
+                $('.back-click-cast').append('<p> &#11089; ' + memberName + '</p>');
             };
         } else {
             $('.back-click-cast').append('<p> Cast non disponibile </p>');
@@ -171,7 +171,7 @@ $(document).ready(function () {
             for (var i = 0; array.length; i++) {
                 var genre = array[i];
                 var genreName = genre.name;
-                $('.back-click-genres').append('<p> - ' + genreName + '</p>');
+                $('.back-click-genres').append('<p> &#149; ' + genreName + '</p>');
             };
         } else {
             $('.back-click-genres').append('<p> Genere non disponibile </p>');
