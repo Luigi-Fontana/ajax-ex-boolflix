@@ -44,7 +44,7 @@
         </section>
 
         <script id="card-template" type="text/x-handlebars-template">
-            <div class="card">
+            <div class="card" data-card={{contatore}} data-type="{{tipo}}">
                 <div class="front active">
                     <img class="cover" src="{{cover}}" alt="cover">
                 </div>
@@ -64,8 +64,15 @@
                 <div class="back-click">
                     <h3>Trama</h3>
                     <p>{{{trama}}}</p>
+                    <div class="back-click-cast">
+                        <h3>Cast</h3>
+                    </div>
                 </div>
             </div>
+        </script>
+        <script id="card-back-template" type="text/x-handlebars-template">
+            <h3>Cast</h3>
+            <p>{{cast}}</p>
         </script>
 
         <script src="js/main.js" charset="utf-8"></script>

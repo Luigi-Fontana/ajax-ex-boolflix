@@ -30,6 +30,10 @@ $(document).ready(function () {
     $('.container').on('click', '.card .back', function () {
         $(this).hide();
         $(this).siblings('.back-click').fadeIn(100);
+        $('.card .back-click-cast').children('p').remove();
+        var type = $(this).parent().data('type');
+        var id = $(this).parent().data('card');
+        apiCallCast(type, id);
     });
 
     $('.container').on('click', '.card .back-click', function () {
@@ -61,7 +65,23 @@ $(document).ready(function () {
             success: function (data) {
                 var cards = data.results;
                 printCard(type, cards);
+            },
+            error: function (err) {
+                alert('Database Error');
+            }
+        });
+    };
 
+    function apiCallCast(type, id) { // Funzione di chiamata API per trovare il Cast con tipo e ID in entrata
+        $.ajax({
+            url: apiBaseUrl + '/' + type + '/' + id + '/credits',
+            data: {
+                api_key: 'e99307154c6dfb0b4750f6603256716d'
+            },
+            method: 'GET',
+            success: function (data) {
+                var cast = data.cast;
+                printCast(cast);
             },
             error: function (err) {
                 alert('Database Error');
@@ -80,6 +100,8 @@ $(document).ready(function () {
                 titoloOriginale = card.original_name;
             }
             var cardInfos = {
+                contatore: card.id,
+                tipo: type,
                 cover: linkCover(card.poster_path),
                 titolo: titolo,
                 titoloOriginale: titoloOriginale,
@@ -91,6 +113,18 @@ $(document).ready(function () {
             var cardHtml = cardTemplate(cardInfos);
             $('.container').append(cardHtml);
             deleteTitle(cardInfos.titolo, cardInfos.titoloOriginale);
+        };
+    };
+
+    function printCast(array) { // Funzione di stampa dei primi 5 attori del Cast
+        if (array.length > 0) {
+            for (var i = 0; i < 5; i++) {
+                var member = array[i];
+                var memberName = member.name;
+                $('.back-click-cast').append('<p> - ' + memberName + '</p>');
+            };
+        } else {
+            $('.back-click-cast').append('<p> Cast non disponibile </p>');
         };
     };
 
