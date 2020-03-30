@@ -7,6 +7,8 @@ $(document).ready(function () {
     var cardSource = $('#card-template').html();
     var cardTemplate = Handlebars.compile(cardSource);
 
+    apiCall('movie', 'star wars'); // All'avvio mostro una query per non avere la pagina vuota
+
     $('#icon-search').click(function () {
         search();
     });
