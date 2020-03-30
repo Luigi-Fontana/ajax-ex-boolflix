@@ -31,9 +31,11 @@ $(document).ready(function () {
         $(this).hide();
         $(this).siblings('.back-click').fadeIn(100);
         $('.card .back-click-cast').children('p').remove();
+        $('.card .back-click-genres').children('p').remove();
         var type = $(this).parent().data('type');
         var id = $(this).parent().data('card');
         apiCallCast(type, id);
+        apiCallGenres(type, id);
     });
 
     $('.container').on('click', '.card .back-click', function () {
@@ -89,6 +91,24 @@ $(document).ready(function () {
         });
     };
 
+    function apiCallGenres(type, id) { // Funzione di chiamata API per trovare i generi con tipo e ID in entrata
+        $.ajax({
+            url: apiBaseUrl + '/' + type + '/' + id,
+            data: {
+                api_key: 'e99307154c6dfb0b4750f6603256716d',
+                language: 'it-IT'
+            },
+            method: 'GET',
+            success: function (data) {
+                var genres = data.genres;
+                printGenres(genres);
+            },
+            error: function (err) {
+                alert('Database Error');
+            }
+        });
+    };
+
     function printCard(type, array) { // Funzione di stampa della Card con Handlebars con tipo e array di oggetti in entrata
         for (var i = 0; i < array.length; i++) {
             var card = array[i];
@@ -125,6 +145,18 @@ $(document).ready(function () {
             };
         } else {
             $('.back-click-cast').append('<p> Cast non disponibile </p>');
+        };
+    };
+
+    function printGenres(array) { // Funzione di stampa dei generi
+        if (array.length > 0) {
+            for (var i = 0; array.length; i++) {
+                var genre = array[i];
+                var genreName = genre.name;
+                $('.back-click-genres').append('<p> - ' + genreName + '</p>');
+            };
+        } else {
+            $('.back-click-genres').append('<p> Genere non disponibile </p>');
         };
     };
 
