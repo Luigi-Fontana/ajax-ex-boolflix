@@ -16,18 +16,18 @@ $(document).ready(function () {
         };
     });
 
-    $('.container').on('mouseenter', '.card', function () {
+    $('.container').on('mouseenter', '.card', function () { // Hover su Card mostro il retro
         $(this).children('.front').hide();
         $(this).children('.back').fadeIn(100);
     });
 
-    $('.container').on('mouseleave', '.card', function () {
+    $('.container').on('mouseleave', '.card', function () { // Mouse Leave su card torno alla situazione originale in cui visualizzo la copertina
         $(this).children('.front').fadeIn(100);
         $(this).children('.back').hide();
         $(this).children('.back-click').hide();
     });
 
-    $('.container').on('click', '.card .back', function () {
+    $('.container').on('click', '.card .back', function () { // Al click del retro della card scateno due chiamate API aggiuntive e visualizzo il nuovo back con i risultati
         $(this).hide();
         $(this).siblings('.back-click').fadeIn(100);
         $('.card .back-click-cast').children('p').remove();
@@ -38,9 +38,24 @@ $(document).ready(function () {
         apiCallGenres(type, id);
     });
 
-    $('.container').on('click', '.card .back-click', function () {
+    $('.container').on('click', '.card .back-click', function () { // Al click del nuovo pannello torno al retro classico della card
         $(this).siblings('.back').fadeIn(100);
         $(this).hide();
+    });
+
+    $('#genere').change(function() { // Filtro dei risultati per ID genere
+        var genreSelected = $(this).val();
+        if (genreSelected == '') {
+            $('.card').show();
+        } else {
+            $('.card').each(function() {
+                if ($(this).attr('data-genere').includes(genreSelected)) {
+                    $(this).show();
+                } else {
+                    $(this).hide();
+                };
+            });
+        };
     });
 
     function search() { // Funzione di ricerca con autoeliminazione input e controllo sull'inserimento di almeno un carattere per la ricerca
@@ -122,6 +137,7 @@ $(document).ready(function () {
             var cardInfos = {
                 contatore: card.id,
                 tipo: type,
+                genere: card.genre_ids,
                 cover: linkCover(card.poster_path),
                 titolo: titolo,
                 titoloOriginale: titoloOriginale,

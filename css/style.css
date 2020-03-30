@@ -118,6 +118,22 @@ main {
     max-width: 1280px;
     height: 100%;
     margin: 0 auto;
+    padding: 100px 20px;
+}
+
+#genere {
+    background-color: #141414;
+    border: none;
+    font-size: 16px;
+    color: lightgrey;
+    border-radius: 20px;
+    padding: 5px 20px;
+    -moz-appearance:none;
+    -webkit-appearance:none;
+    appearance:none;
+    letter-spacing: 2px;
+    margin-left: 20px;
+    margin-bottom: 10px;
 }
 
 .container {
@@ -126,7 +142,6 @@ main {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    padding: 100px 20px;
 }
 
 .card {
